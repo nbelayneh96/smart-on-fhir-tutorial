@@ -50,12 +50,24 @@
           var temperature = byCodes('8310-5');
 
           var p = defaultPatient();
+
+          var aitable = "<table>";
+          
+          for (var ai_element  = 0; ai_element < algint.length; ai_element++)
+          {
+            aitable = aitable + "<tr>" + "<td>" + algint[ai_element].code.text + "</td></tr>";
+          }
+
+          aitable += "</table>";
+
           p.birthdate = patient.birthDate;
           p.gender = gender;
           p.fname = fname;
           p.lname = lname;
           p.height = getQuantityValueAndUnit(height[0]);
           p.temperature = getQuantityValueAndUnit(temperature[0]);
+          
+          p.allergy = aitable;
 
           if (typeof systolicbp != 'undefined')  {
             p.systolicbp = systolicbp;
