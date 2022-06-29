@@ -23,11 +23,7 @@
                   });
         
         var algint = smart.patient.api.fetchAll({
-                    type: 'AllergyIntolerance', 
-                    query: {
-                       clincalStatus= 'Active'
-                       }
-                    });
+                    type: 'AllergyIntolerance'});
 
         $.when(pt, obv, algint).fail(onError);
 
