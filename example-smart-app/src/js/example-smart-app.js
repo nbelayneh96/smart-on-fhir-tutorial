@@ -23,7 +23,11 @@
                   });
         
         var algint = smart.patient.api.fetchAll({
-                    type: 'AllergyIntolerance'});
+                    "type": 'AllergyIntolerance',
+                    "query": {
+                      "clinical-status": 'active'
+                           }
+        });
 
         $.when(pt, obv, algint).fail(onError);
 
@@ -53,12 +57,16 @@
 
           var aitable = "<table>";
           
+          aitable += "<thead><tr><th>Allergy Name</th><th>Severity</th></tr></thead>";
+
+          aitable += "<tbody>";
+          
           for (var ai_element  = 0; ai_element < algint.length; ai_element++)
           {
-            aitable = aitable + "<tr>" + "<td>" + algint[ai_element].code.text + "</td></tr>";
+            aitable = aitable + "<tr><td>" + algint[ai_element].code.text + "</td><td>" + "algint[ai_element].reaction.severity " + "</td></tr>";
           }
 
-          aitable += "</table>";
+          aitable += "</tbody></table>";
 
           p.birthdate = patient.birthDate;
           p.gender = gender;
